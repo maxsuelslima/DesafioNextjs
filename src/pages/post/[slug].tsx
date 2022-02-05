@@ -10,9 +10,10 @@ import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import Header from '../../components/Header';
 
+
 interface Post {
   first_publication_date: string | null;
-  timeToRead:string
+  timeToRead: string
   data: {
     title: string;
     banner: {
@@ -45,31 +46,29 @@ export default function Post({ post }: PostProps) {
   }
   return (
     <>
-      { 
-              <main className={styles.contentContainer}>
-              <div className={styles.logoContainer}>
-                <Header/>
-              </div>
-              <img src={post.data.banner.url} alt="" />
-              <div className={styles.postContent}>
-                <div>
-                  <h1> Craindo app react</h1>
-                  <div className={styles.iconContainer}>
-                    <span><FiCalendar /> {post.first_publication_date} </span>
-                    <span><FiUser /> {post.data.author}</span>
-                    <span><FiClock /> {post.timeToRead} min</span>
-                  </div>
-                  <span>
-                    <h2>{post.data.contentone.heading}</h2>
-                    <span>{RichText.asText(post.data.contentone.bodyone.text)}</span>
+      <main className={styles.contentContainer}>
+        <div className={styles.logoContainer}>
+          <Header />
+        </div>
+        <img src={post.data.banner.url} alt="" />
+        <div className={styles.postContent}>
+          <div>
+            <h1> Craindo app react</h1>
+            <div className={styles.iconContainer}>
+              <span><FiCalendar /> {post.first_publication_date} </span>
+              <span><FiUser /> {post.data.author}</span>
+              <span><FiClock /> {post.timeToRead} min</span>
+            </div>
+            <span>
+              <h2>{post.data.contentone.heading}</h2>
+              <span>{RichText.asText(post.data.contentone.bodyone.text)}</span>
 
-                    <h2>{post.data.contenttwo.headingtwo}</h2>
-                    <span>{RichText.asText(post.data.contenttwo.bodytwo.text)}</span>
-                  </span>
-                </div>
-              </div>
-            </main>
-      }
+              <h2>{post.data.contenttwo.headingtwo}</h2>
+              <span>{RichText.asText(post.data.contenttwo.bodytwo.text)}</span>
+            </span>
+          </div>
+        </div>
+      </main>
     </>
   )
 
@@ -87,21 +86,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async context => {
   const { slug } = context.params
   const response = await Client().getByUID('posts', String(slug), {});
-  const text=response.data.contentone[0].bodyone.map(x=>x.text)+response.data.contenttwo[0].bodytwo.map(x=>x.text)+response.data.contentone[0].heading+response.data.contenttwo[0].headingtwo
-  function countWords(s){
-    s = s.replace(/(^\s*)|(\s*$)/gi,"");
-    s = s.replace(/[ ]{2,}/gi," ");
-    s = s.replace(/\n /,"\n");
-    return s.split(' ').filter(function(str){return str!="";}).length;
-} 
-  
-  const textCounter=Math.round((countWords(text)+5)/200)
+  const text = response.data.contentone[0].bodyone.map(x => x.text) + response.data.contenttwo[0].bodytwo.map(x => x.text) + response.data.contentone[0].heading + response.data.contenttwo[0].headingtwo
+  function countWords(s) {
+    s = s.replace(/(^\s*)|(\s*$)/gi, "");
+    s = s.replace(/[ ]{2,}/gi, " ");
+    s = s.replace(/\n /, "\n");
+    return s.split(' ').filter(function (str) { return str != ""; }).length;
+  }
+
+  const textCounter = Math.round((countWords(text) + 5) / 200)
   console.log(textCounter)
 
   const post = {
     uid: response.uid,
-    timeToRead:textCounter,
-    first_publication_date:format(parseISO(response.first_publication_date), "d MMM yyyy", { locale: ptBR }),
+    timeToRead: textCounter,
+    first_publication_date: format(parseISO(response.first_publication_date), "d MMM yyyy", { locale: ptBR }),
     data: {
       title: response.data.title,
       banner: {

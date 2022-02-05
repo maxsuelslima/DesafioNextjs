@@ -10,6 +10,7 @@ import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import Link from 'next/link';
 import { useState } from 'react';
+import Head from 'next/head';
 interface Post {
   uid?: string;
   first_publication_date: string | null;
@@ -62,13 +63,16 @@ export default function Home({postsPagination}:HomeProps) {
     setPosts([...posts,...newPosts]);
   }
 
-  return (
+  return (<>
+    <Header/>
     <main className={styles.mainContainer}>
-      <div>
-        <Header/>
-      </div>
+
       {posts.map(teste => (
+        
         <>
+              <Head>
+        <title>Home | spacetraveling</title>
+      </Head>
           <div className={styles.contentContainer} key={teste.uid}>
             <Link href={`/post/${teste.uid}`}>
             <a href="">
@@ -90,7 +94,7 @@ export default function Home({postsPagination}:HomeProps) {
         </button>
       </div>)}
 
-    </main>
+    </main></>
   )
 }
 
