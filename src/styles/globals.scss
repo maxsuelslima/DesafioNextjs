@@ -2,6 +2,18 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+}
+body{
+  font-family: Inter;
+  background-color: #282C34;
+
+}
+h1{
+  text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 
 // TODO

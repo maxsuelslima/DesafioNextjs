@@ -1,1 +1,57 @@
-// TODO
+.mainContainer{
+    padding-left: 23.125rem;
+    padding-top: 5rem;
+    h1{
+        color:white
+    }
+    div{
+        color: #6D6E72;
+    }
+    a{
+        text-decoration: none;
+
+    }
+    transition: 0.2s;
+
+    .contentContainer{
+        margin-top: 4rem;
+        margin-bottom: 3rem;
+        &:hover{
+            filter: brightness(120%);
+        }
+        .subTitle{
+            margin-top: 1rem;
+        }
+        .icon{
+            display: flex;
+            font-size: 0.875rem;
+            margin-top: 1.25rem;
+            text-align: center;
+            align-items: center;
+            span{
+                margin-top: 0.1rem;
+                margin-left: 0.5rem;
+            }
+            div{
+                display: flex;
+                align-items: center;
+                margin-left: 16px;
+
+            }
+            div:first-child{
+                margin-left: 0;
+            }
+        }
+    }
+    .divCarregar{
+        .carregar{
+            color: #FF57B2;
+            font-weight: bold;
+            font-size: 1.125rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+    }
+
+}
