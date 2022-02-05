@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { RichText } from 'prismic-dom';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import Header from '../../components/Header';
 
 interface Post {
   first_publication_date: string | null;
@@ -47,7 +48,7 @@ export default function Post({ post }: PostProps) {
       { 
               <main className={styles.contentContainer}>
               <div className={styles.logoContainer}>
-                <Image src="/Logo.svg" width="240px" height="26px" alt="Logo"></Image>
+                <Header/>
               </div>
               <img src={post.data.banner.url} alt="" />
               <div className={styles.postContent}>

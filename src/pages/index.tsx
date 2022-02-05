@@ -65,7 +65,7 @@ export default function Home({postsPagination}:HomeProps) {
   return (
     <main className={styles.mainContainer}>
       <div>
-        <Image src="/Logo.svg" width="240px" height="26px" alt="logo"></Image>
+        <Header/>
       </div>
       {posts.map(teste => (
         <>
